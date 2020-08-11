@@ -1,24 +1,65 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## user テーブル
 
-Things you may want to cover:
+| Column              | Type    | Options     |
+| ------------------- | ------- | ----------- |
+| nickname            | string  | null: false |
+| email               | string  | null: false |
+| password            | string  | null: false |
+| first_name          | string  | null: false |
+| last_name           | string  | null: false |
+| first_name_phonetic | string  | null: false |
+| last_name_phonetic  | string  | null: false |
+| birth_date          | date    | null: false |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :items
+- has_many :user_items
 
-* Configuration
+## item テーブル
 
-* Database creation
+| Column            | Type    | Options     |
+| ----------------- | ------- | ----------- |
+| name              | string  | null: false |
+| explain           | text    | null: false |
+| price             | integer | null: false |
+| image             | string  | null: false |
+| category_id       | integer | null: false |
+| item_status_id    | integer | null: false |
+| sending_charge_id | integer | null: false |
+| sending_region_id | integer | null: false |
+| sending_day_id    | integer | null: false |
+| user_id           | integer | null: false,foreign_key: true |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- belongs_to :user
+- has_one :user_item
 
-* Services (job queues, cache servers, search engines, etc.)
+## address テーブル
 
-* Deployment instructions
+| Column         | Type    | Options     |
+| -------------- | ------- | ----------- |
+| user_item_id   | integer | null: false,foreign_key: true |
+| postal_code    | string  | null: false |
+| phone_number   | string  | null: false |
+| city           | string  | null: false |
+| address        | string  | null: false |
+| building_name  | string  |             |
+| prefectures_id | integer | null: false |
 
-* ...
+### Association
+- belongs_to :user_item
+
+## user_item テーブル
+
+| Column     | Type    | Options     |
+| ---------- | ------- | ----------- |
+| user_id    | integer | null: false |
+| item_id    | integer | null: false |
+
+### Association
+- belongs_to :user
+- belongs_to :item
+- has_one :address
