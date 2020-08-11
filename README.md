@@ -3,7 +3,7 @@
 
 | Column              | Type    | Options     |
 | ------------------- | ------- | ----------- |
-| nickname            | name    | null: false |
+| nickname            | string  | null: false |
 | email               | string  | null: false |
 | password            | string  | null: false |
 | first_name          | string  | null: false |
@@ -21,27 +21,27 @@
 
 | Column            | Type    | Options     |
 | ----------------- | ------- | ----------- |
-| item_name         | name    | null: false |
+| name              | string  | null: false |
 | explain           | text    | null: false |
 | price             | integer | null: false |
-| image             | text    | null: false |
+| image             | string  | null: false |
 | category_id       | integer | null: false |
 | item_status_id    | integer | null: false |
 | sending_charge_id | integer | null: false |
 | sending_region_id | integer | null: false |
 | sending_day_id    | integer | null: false |
-| user_id           | integer | null: false |
+| user_id           | integer | null: false,foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - has_many :user_items
 
-## purchase テーブル
+## address テーブル
 
 | Column         | Type    | Options     |
 | -------------- | ------- | ----------- |
-| user_item_id   | integer | null: false |
+| user_item_id   | integer | null: false,foreign_key: true |
 | postal_code    | string  | null: false |
 | phone_number   | string  | null: false |
 | city           | string  | null: false |
@@ -62,4 +62,4 @@
 
 ### Association
 
-- has_one :purchase
+- has_one :address
