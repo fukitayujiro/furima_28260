@@ -35,7 +35,7 @@
 ### Association
 
 - belongs_to :user
-- has_many :user_items
+- has_one :user_item
 
 ## address テーブル
 
@@ -50,7 +50,6 @@
 | prefectures_id | integer | null: false |
 
 ### Association
-
 - belongs_to :user_item
 
 ## user_item テーブル
@@ -61,5 +60,6 @@
 | item_id    | integer | null: false |
 
 ### Association
-
+- belongs_to :user
+- belongs_to :item
 - has_one :address
