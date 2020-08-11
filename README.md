@@ -3,8 +3,7 @@
 
 | Column              | Type    | Options     |
 | ------------------- | ------- | ----------- |
-| user_id             | string  | null: false |
-| nickname            | string  | null: false |
+| nickname            | name    | null: false |
 | email               | string  | null: false |
 | password            | string  | null: false |
 | first_name          | string  | null: false |
@@ -16,17 +15,14 @@
 ### Association
 
 - has_many :items
-- has_many :purchase
-- has_many :user_item
-- belongs_to_active_hash :pulldown
+- has_many :user_items
 
 ## item テーブル
 
 | Column            | Type    | Options     |
 | ----------------- | ------- | ----------- |
-| item_name         | string  | null: false |
-| item_name         | string  | null: false |
-| item_explain      | text    | null: false |
+| item_name         | name    | null: false |
+| explain           | text    | null: false |
 | price             | integer | null: false |
 | image             | text    | null: false |
 | category_id       | integer | null: false |
@@ -34,13 +30,12 @@
 | sending_charge_id | integer | null: false |
 | sending_region_id | integer | null: false |
 | sending_day_id    | integer | null: false |
+| user_id           | integer | null: false |
 
 ### Association
 
 - belongs_to :user
-- belongs_to :purchase
-- has_many :user_item
-- belongs_to_active_hash :pulldown
+- has_many :user_items
 
 ## purchase テーブル
 
@@ -51,15 +46,12 @@
 | phone_number   | string  | null: false |
 | city           | string  | null: false |
 | address        | string  | null: false |
-| building_name  | string  | null: false |
+| building_name  | string  |             |
 | prefectures_id | integer | null: false |
 
 ### Association
 
-- has_many :user
-- has_many :item
 - belongs_to :user_item
-- belongs_to_active_hash :pulldown
 
 ## user_item テーブル
 
@@ -70,6 +62,4 @@
 
 ### Association
 
-- belongs_to :user
-- belongs_to :item
-- belongs_to :user_item
+- has_one :purchase
