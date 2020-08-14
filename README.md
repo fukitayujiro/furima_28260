@@ -1,5 +1,5 @@
 
-## user テーブル
+## users テーブル
 
 | Column              | Type    | Options     |
 | ------------------- | ------- | ----------- |
@@ -8,8 +8,8 @@
 | password            | string  | null: false |
 | first_name          | string  | null: false |
 | last_name           | string  | null: false |
-| first_name_phonetic | string  | null: false |
-| last_name_phonetic  | string  | null: false |
+| first_name_kana     | string  | null: false |
+| last_name_kana      | string  | null: false |
 | birth_date          | date    | null: false |
 
 ### Association
@@ -17,7 +17,7 @@
 - has_many :items
 - has_many :user_items
 
-## item テーブル
+## items テーブル
 
 | Column            | Type    | Options     |
 | ----------------- | ------- | ----------- |
