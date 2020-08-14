@@ -29,12 +29,10 @@ describe User do
         expect(@user).to be_valid
       end
     end
-
     context '新規登録がうまくいかないとき' do
       it "nicknameが空だと登録できない" do
         @user.nickname = ''
         @user.valid?
-        # エラーになるので、ここでbinding.pryで確認、trueなのでバリデーションがない。
         expect(@user.errors.full_messages).to include("Nickname can't be blank")
       end
       it "emailが空では登録できない" do
@@ -74,26 +72,23 @@ describe User do
       it "first_nameが空だと登録できない" do
         @user.first_name = ''
         @user.valid?
-        # trueなのでバリデーションがない。
         expect(@user.errors.full_messages).to include("First name can't be blank")
       end
       it "last_nameが空では登録できない" do
         @user.last_name = ''
         @user.valid?
-        # trueなのでバリデーションがない。
         expect(@user.errors.full_messages).to include("Last name can't be blank")
       end
       it "first_nameが半角英数字を含むと登録できない" do
         @user.first_name = 'a1'
         @user.valid?
-        # trueなのでバリデーションがない。
-        expect(@user.errors.full_messages).to include("")
+        expect(@user.errors.full_messages).to include("First name 全角文字を使用してください")
       end
       it "last_nameが半角英数字を含むと登録できない" do
         @user.last_name = '2'
         @user.valid?
         # trueなのでバリデーションがない。
-        expect(@user.errors.full_messages).to include("")
+        expect(@user.errors.full_messages).to include("Last name 全角文字を使用してください")
       end
       it "first_name_kanaが空だと登録できない" do
         @user.first_name_kana = ''
@@ -111,19 +106,19 @@ describe User do
         @user.first_name_kana = '山田やまだa1'
         @user.valid?
         # trueなのでバリデーションがない。
-        expect(@user.errors.full_messages).to include("")
+        expect(@user.errors.full_messages).to include("First name kana 全角カタカナ文字を使用してください")
       end
       it "last_name_kanaがカタカナ全角以外では登録できない" do
         @user.last_name_kana = '太郎たろうb2'
         @user.valid?
         # trueなのでバリデーションがない。
-        expect(@user.errors.full_messages).to include("")
+        expect(@user.errors.full_messages).to include("Last name kana 全角カタカナ文字を使用してください")
       end
       it "birth_dateが空では登録できない" do
         @user.birth_date = ''
         @user.valid?
         # trueなのでバリデーションがない。
-        expect(@user.errors.full_messages).to include("")
+        expect(@user.errors.full_messages).to include("Birth date can't be blank")
       end
     end
   end
