@@ -12,6 +12,9 @@ class Item < ApplicationRecord
     validates :image
     validates :name
     validates :explain
+  end
+
+  with_options presence: true, numericality: { other_than: 1 } do
     validates :category_id
     validates :item_status_id
     validates :sending_charge_id

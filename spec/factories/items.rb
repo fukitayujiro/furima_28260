@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :item do
-    id                   {"1"}
+    id                   {"2"}
     name                 {"田中"}
     explain              {"1年の田中くん"}
     category_id          {"5"}

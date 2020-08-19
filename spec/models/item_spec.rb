@@ -32,25 +32,50 @@ describe Item do
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
+      it "category_idが1の時" do
+        @item.category_id = "1"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
+      end
       it "item_status_idが空の時" do
         @item.item_status_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Item status can't be blank")
+      end
+      it "item_status_idが1の時" do
+        @item.item_status_id = "1"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Item status must be other than 1")
       end
       it "sending_charge_idが空の時" do
         @item.sending_charge_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Sending charge can't be blank")
       end
+      it "sending_charge_idが1の時" do
+        @item.sending_charge_id = "1"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Sending charge must be other than 1")
+      end
       it "sending_region_idが空の時" do
         @item.sending_region_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Sending region can't be blank")
       end
+      it "sending_region_idが1の時" do
+        @item.sending_region_id = "1"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Sending region must be other than 1")
+      end
       it "sending_day_idが空の時" do
         @item.sending_day_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Sending day can't be blank")
+      end
+      it "sending_day_idが1の時" do
+        @item.sending_day_id = "1"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Sending day must be other than 1")
       end
       it "priceが空の時" do
         @item.price = nil
