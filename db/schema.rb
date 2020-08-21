@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2020_08_21_053627) do
     t.string "city"
     t.string "address"
     t.string "building_name"
+    t.integer "prefectures_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_item_id"], name: "index_addresses_on_user_item_id"
