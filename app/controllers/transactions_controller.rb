@@ -4,16 +4,15 @@ class TransactionsController < ApplicationController
 
   def index
     @item = Item.find(params[:item_id])
+    @address = Address.new
   end
 
   def create
-    @transaction = Address.new(price: transaction_params[:price])
-    if @transaciton.valid?
-      pay_item
-      @transaction.save
-      return redirect_to root_path
+    @address = UserAddress.new(address_params)
+    if @address.save
+      redirect_to root_path
     else
-      render 'index'
+      render :index
     end
   end
 
@@ -31,17 +30,8 @@ class TransactionsController < ApplicationController
     end
   end
 
-  def transaction_params
-    params.permit(:price, :token)
+  def address_params
+    params.permit(:postal_code, :prefectures_id, :city, :addresses, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], user_item_id: params[:user_item_id])
   end
 
-  def pay_item
-    Payjp.api_key = "sk_test_0bbce8766a6a572bd3438742"
-    Payjp::Charge.create(
-      amount: transaction_params[:price],
-      card: transaction_params[:token],
-      currency:'jpy'
-    )
-  end
-  
 end
