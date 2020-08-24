@@ -1,7 +1,7 @@
 class UserAddress
 
   include ActiveModel::Model
-  attr_accessor :postal_code, :phone_number, :city, :addresses, :building_name, :prefectures_id, :user_item_id, :user_id, :item_id
+  attr_accessor :token, :price, :postal_code, :phone_number, :city, :addresses, :building_name, :prefectures_id, :user_item_id, :user_id, :item_id
 
   def save
     user_item = UserItem.create(user_id: user_id, item_id: item_id)
