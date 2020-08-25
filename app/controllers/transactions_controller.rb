@@ -1,16 +1,16 @@
 class TransactionsController < ApplicationController
   before_action :move_to_index, only: :index
   before_action :move_to_login, only: :index
+  before_action :find_item_id, only: [:index, :create]
 
   def index
-    @item = Item.find(params[:item_id])
     @address = Address.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @address = UserAddress.new(address_params)
-    if @address.save
+    if @address.valid?
+      @address.save
       pay_item
       redirect_to root_path
     else
@@ -43,6 +43,10 @@ class TransactionsController < ApplicationController
       card: address_params[:token],
       currency:'jpy'
     )
+  end
+
+  def find_item_id
+    @item = Item.find(params[:item_id])
   end
 
 end
