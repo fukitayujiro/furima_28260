@@ -1,3 +1,4 @@
+<% console %>
 <%= render "shared/header" %>
 
 <%# 商品の概要 %>
@@ -9,14 +10,16 @@
     <div class='item-img-content'>
       <%= image_tag @item.image, class:"item-box-img" %>
       <%# 商品が売れている場合は、sold outの表示をしましょう。 %>
-      <%# <div class='sold-out'>
+      <% if @item.user_item.present? %>
+      <div class='sold-out'>
         <span>Sold Out!!</span>
-      </div> %>
+      </div>
+      <% end %>
       <%# //商品が売れている場合は、sold outの表示をしましょう。 %>
     </div>
     <div class="item-price-box">
       <span class="item-price">
-        <%= @item.price %>
+        ¥<%= @item.price %>
       </span>
       <span class="item-postage">
         (税込) 送料込み
@@ -27,8 +30,9 @@
       <%= link_to '商品の編集', edit_item_path(@item.id) , method: :get, class: "item-red-btn" %>
       <p class='or-text'>or</p>
       <%= link_to '削除', item_path(@item.id), method: :delete, class:'item-destroy' %>
-    <% else %>
-      <%= link_to '購入画面に進む', "#" ,class:"item-red-btn"%>
+    <% end %>
+    <% unless @item.user_item.present? %>
+      <%= link_to '購入画面に進む', item_transactions_path(@item.id) ,class:"item-red-btn"%>
     <% end %>
 
     <%# //ログインしていて、なおかつ、ログインしているユーザと出品しているユーザが同一人物でないとき表示しましょう。 %>

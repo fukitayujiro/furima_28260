@@ -45,7 +45,7 @@
 | postal_code    | string  | null: false |
 | phone_number   | string  | null: false |
 | city           | string  | null: false |
-| address        | string  | null: false |
+| addresses        | string  | null: false |
 | building_name  | string  |             |
 | prefectures_id | integer | null: false |
 
@@ -63,3 +63,4 @@
 - belongs_to :user
 - belongs_to :item
 - has_one :address
+
