@@ -10,8 +10,8 @@ class TransactionsController < ApplicationController
   def create
     @address = UserAddress.new(address_params)
     if @address.valid?
-      pay_item
       @address.save
+      pay_item
       redirect_to root_path
     else
       render :index
