@@ -153,3 +153,10 @@
   text-align: right;
   cursor: pointer;
 }
+
+.registration-sns{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  text-decoration: none;
+}

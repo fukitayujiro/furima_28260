@@ -18,3 +18,13 @@
   text-align: center;
   color: red;
 }
+
+.sessions-sns{
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  text-decoration: none;
+  background: #f8f8f8;
+  padding-bottom: 30px;
+}
