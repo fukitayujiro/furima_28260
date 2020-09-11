@@ -1,5 +1,8 @@
 <%= render "shared/header" %>
-
+<% breadcrumb :items %>
+<div class="breadcrumbs">
+  <%= breadcrumbs separator: " &rsaquo; " %>
+</div>
 <%# 商品の概要 %>
 <div class="item-show">
   <div class="item-box">
